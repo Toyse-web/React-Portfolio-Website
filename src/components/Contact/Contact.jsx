@@ -1,6 +1,26 @@
+import { useState } from "react";
+import axios from "axios";
 import "./Contact.css";
 
 function Contact() {
+    const [form, setForm] = useState({name: "", email: "", message: ""});
+    const [status, setStatus] = useState(null);
+
+    const handleChange = e => setForm({...form, [e.target.name]: e.target.value});
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus("loading");
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/contact`, form);
+            setStatus("success");
+            setForm({name: "", email: "", message: ""});
+        } catch (err) {
+            console.error(err);
+            setStatus("Error");
+        }
+    }
+
     return (
         <section id="contact" className="contact-section">
             <h1 className="contact-title">Contact Me</h1>
@@ -24,11 +44,14 @@ function Contact() {
                 </div>
 
                 {/* Right side form */}
-                <form className="contact-form">
-                    <input type="text" placeholder="Your Name" required />
-                    <input type="email" placeholder="Your Email" required />
-                    <textarea placeholder="Your Message" rows="6" required></textarea>
+                <form className="contact-form" onSubmit={handleSubmit}>
+                    <input name="name" value={form.name} onChange={handleChange} placeholder="Your Name" required />
+                    <input name="email" value={form.email} onChange={handleChange} placeholder="Your Email" required />
+                    <textarea name="message" value={form.message} onChange={handleChange} placeholder="Your Message" rows="6" required />
                     <button type="submit">Send Message</button>
+                    {status === "loading" && <p>Sending...</p>}
+                    {status === "success" && <p className="success">Thanks - I'll get back to you soon!</p>}
+                    {status === "error" && <p className="error">Oops - something went wrong. Try Again!!</p>}
                 </form>
             </div>
         </section>

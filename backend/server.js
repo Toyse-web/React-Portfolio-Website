@@ -2,15 +2,36 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 const contactRoute = require("./routes/contact");
 
 const app = express();
-app.use(cors()); //I will configure this later more strictly cos of production
+
+app.use(helmet());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("api/contact", contactRoute);
 
 const PORT = process.env.PORT || 5000;
+
+// This will stops someone from submitting contact form 1000 times per minute
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // for 15 minutes
+  max: 100, // maximum 100 requests per IP
+  message: {
+    error: "Too many requests, please try again later.",
+  },
+});
+
+app.use("/api/contact", contactLimiter);
 
 const  connectDB = async () => {
   try {

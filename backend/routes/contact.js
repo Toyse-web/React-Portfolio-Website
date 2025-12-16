@@ -2,14 +2,26 @@ const express = require("express");
 const router = express.Router();
 const Message = require("../models/Message");
 const nodemailer = require("nodemailer");
+const {body, validationResult} = require("express-validator");
 
-router.post("/", async (req, res) => {
+router.post("/",
+    [
+        body("name").trim().notEmpty().withMessage("name is required"),
+        body("email").isEmail().notEmpty().withMessage("Valid email is required"),
+        body("message").trim().notEmpty().withMessage("Message is required").isLength({min: 10})
+        .withMessage("Message must be at least 10 characters"),
+    ],
+    async (req, res) => {
     try {
-        const {name, email, message} = req.body;
-        if (!name || !email || !message) {
-            return res.status(400).json({error: "All fields are required"});
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: errors.array()});
         }
 
+        const {name, email, message} = req.body;
+
+        // Save to DB
         const saved = await Message.create({name, email, message});
 
         // Send notification email
@@ -23,7 +35,7 @@ router.post("/", async (req, res) => {
                     pass: process.env.EMAIL_PASS,
                 },
             });
-
+            
             const mailOptions = {
                 from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
                 to: process.env.EMAIL_USER,

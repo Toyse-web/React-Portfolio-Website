@@ -5,6 +5,7 @@ import "./Contact.css";
 function Contact() {
     const [form, setForm] = useState({name: "", email: "", message: ""});
     const [status, setStatus] = useState(null);
+    const [errorMsg, setErrorMsg] = useState("");
 
     const handleChange = e => setForm({...form, [e.target.name]: e.target.value});
 
@@ -17,7 +18,26 @@ function Contact() {
             setForm({name: "", email: "", message: ""});
         } catch (err) {
             console.error(err);
+
+            if (err.response && err.response.data) {
+                if (err.response.data.errors) {
+                    setErrorMsg(err.response.data.errors[0].msg);
+                } else if (err.response.data.error) {
+                    setErrorMsg(err.response.data.error);
+                } else {
+                    setErrorMsg("Something went wrong. Please try again.");
+                }
+            } else {
+                setErrorMsg("Network error. Please try again.");
+            }
+
             setStatus("Error");
+
+            // Hide after 4 seconds
+            setTimeout(() => {
+                setErrorMsg("");
+                setStatus(null);
+            }, 4000);
         }
     }
 
@@ -42,6 +62,12 @@ function Contact() {
                         <p><strong>Location:</strong> West Africa</p>
                     </div>
                 </div>
+
+                {errorMsg && (
+                    <div className="toast error-toast">
+                        {errorMsg}
+                    </div>
+                )}
 
                 {/* Right side form */}
                 <form className="contact-form" onSubmit={handleSubmit}>

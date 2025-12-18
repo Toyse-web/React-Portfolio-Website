@@ -1,4 +1,6 @@
 import react from "react";
+import {FaFacebookF, FaLinkedinIn, FaInstagram} from "react-icons/fa";
+import {FaXTwitter} from "react-icons/fa6";
 import "./Footer.css";
 
 const Footer = () => {
@@ -27,10 +29,18 @@ const Footer = () => {
                 <div className="footer-social">
                     <h3>Follow Me</h3>
                     <div className="social-icons">
-                        <a href="#" target="_blank">🌐</a>
-                        <a href="#" target="_blank">🐙</a>
-                        <a href="#" target="_blank">🐦</a>
-                        <a href="#" target="_blank">💼</a>
+                        <a href="https://facebook.com/Toyib Olayonwa " target="_blank" rel="noreferrer">
+                            <FaFacebookF />
+                        </a>
+                        <a href="https://linkedin.com/in/toysedevs" target="_blank" rel="noreferrer">
+                            <FaLinkedinIn />
+                        </a>
+                        <a href="https://x.com/BigToyse" target="_blank" rel="noreferrer">
+                            <FaXTwitter />
+                        </a>
+                        <a href="https://instagram.com/toyse_entertainment" target="_blank" rel="noreferrer">
+                            <FaInstagram />
+                        </a>
                     </div>
                 </div>
             </div>

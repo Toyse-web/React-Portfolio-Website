@@ -11,35 +11,30 @@ function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus("loading");
+        setStatus({ type:"loading", text: "Sending..."});
+
         try {
             const res = await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/contact`, form);
-            setStatus("success");
-            setForm({name: "", email: "", message: ""});
-        } catch (err) {
-            console.error(err);
+            setStatus({
+                type: "success",
+                text: "Message sent successfully! I'll get back to you through your email.",
+            });
 
-            if (err.response && err.response.data) {
-                if (err.response.data.errors) {
-                    setErrorMsg(err.response.data.errors[0].msg);
-                } else if (err.response.data.error) {
-                    setErrorMsg(err.response.data.error);
-                } else {
-                    setErrorMsg("Something went wrong. Please try again.");
-                }
-            } else {
-                setErrorMsg("Network error. Please try again.");
+            setForm({name: "", email: "", message: ""});
+
+            setTimeout(() => setStatus(null), 5000);
+        } catch (err) {
+            if (err.response?.data?.errors) {
+                setStatus({
+                    type: "error",
+                    text: "Message should be 10 characters upwards."
+                });
             }
 
-            setStatus("Error");
-
             // Hide after 4 seconds
-            setTimeout(() => {
-                setErrorMsg("");
-                setStatus(null);
-            }, 4000);
+            setTimeout(() => setStatus(null), 4000);
         }
-    }
+    };
 
     return (
         <section id="contact" className="contact-section">
@@ -63,9 +58,9 @@ function Contact() {
                     </div>
                 </div>
 
-                {errorMsg && (
-                    <div className="toast error-toast">
-                        {errorMsg}
+                {status && (
+                    <div className={`toast ${status.type}`}>
+                        {status.text}
                     </div>
                 )}
 

@@ -1,5 +1,5 @@
 import "./About.css";
-import profilePic from "../../assets/profile.png"
+import aboutPic from "../../assets/about-pic.jpg";
 
 function About() {
     return (
@@ -10,7 +10,7 @@ function About() {
             <div className="about-container">
                 {/* Left side image */}
                 <div className="about-image">
-                    <img src={profilePic} alt="Profile" />
+                    <img src={aboutPic} alt="Profile" />
                 </div>
 
                 {/* Right side text */}

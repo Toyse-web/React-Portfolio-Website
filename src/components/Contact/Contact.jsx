@@ -5,35 +5,39 @@ import "./Contact.css";
 function Contact() {
     const [form, setForm] = useState({name: "", email: "", message: ""});
     const [status, setStatus] = useState(null);
-    const [errorMsg, setErrorMsg] = useState("");
 
     const handleChange = e => setForm({...form, [e.target.name]: e.target.value});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus({ type:"loading", text: "Sending..."});
+        setStatus({ type: "loading", text: "Sending message..."});
 
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/contact`, form);
-            setStatus({
-                type: "success",
-                text: "Message sent successfully! I'll get back to you through your email.",
-            });
+            const res = await axios.post(
+                `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/contact`,
+                form
+            );
 
-            setForm({name: "", email: "", message: ""});
-
-            setTimeout(() => setStatus(null), 5000);
-        } catch (err) {
-            if (err.response?.data?.errors) {
+            if (res.data.success && res.data.message) {
                 setStatus({
-                    type: "error",
-                    text: "Message should be 10 characters upwards."
+                    type: res.data.emailError ? "warning" : "success",
+                    text: res.data.emailError
+                            ? `Message saved, but email failed: ${res.data.emailError}`
+                            : "Message sent successfully! I'll get back to you soon",
                 });
             }
 
-            // Hide after 4 seconds
-            setTimeout(() => setStatus(null), 4000);
+            setForm({name: "", email: "", message: ""});
+
+        } catch (err) {
+            setStatus({
+                type: "error",
+                text: err.response?.data?.error?.[0]?.msg ||
+                    err.response?.data?.message ||
+                    "Message must be 10 characters and above."
+            });
         }
+        setTimeout(() => setStatus(null), 5000);
     };
 
     return (
@@ -70,9 +74,6 @@ function Contact() {
                     <input name="email" value={form.email} onChange={handleChange} placeholder="Your Email" required />
                     <textarea name="message" value={form.message} onChange={handleChange} placeholder="Your Message" rows="6" required />
                     <button type="submit">Send Message</button>
-                    {status === "loading" && <p>Sending...</p>}
-                    {status === "success" && <p className="success">Thanks - I'll get back to you soon!</p>}
-                    {status === "error" && <p className="error">Oops - something went wrong. Try Again!!</p>}
                 </form>
             </div>
         </section>

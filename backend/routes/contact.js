@@ -32,7 +32,6 @@ router.post("/",
             try {
                 const transporter = nodemailer.createTransport({
                     host: process.env.EMAIL_HOST || "smtp.gmail.com",
-                    service: "gmail",
                     port: 587,
                     secure: false,
                     auth: {

@@ -13,7 +13,7 @@ function Contact() {
         setStatus({ type: "loading", text: "Sending message..."});
 
         try {
-            const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+            const API_URL = process.env.REACT_APP_API_URL;
             const res = await axios.post(`${API_URL}/api/contact`,form);
 
             if (res.data.success && res.data.message) {

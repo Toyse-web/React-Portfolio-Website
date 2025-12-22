@@ -1,0 +1,130 @@
+.skills-section {
+  padding: 80px 10%;
+  background: linear-gradient(135deg, #ffffff, #f8f9ff);
+  text-align: center;
+  animation: fadeIn 1.3s ease-out forwards;
+}
+
+.skills-title {
+  font-size: 2.7rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #0f0f1a, #3129a6);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.skills-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  line-height: 1.6;
+}
+
+/* GRID CONTAINER */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+/* SKILL CARD */
+.skill-card {
+  background: #fafafa;
+  padding: 25px 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  cursor: pointer;
+  animation: floatUp 1.2s ease-out forwards;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.skill-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(50, 70, 255, 0.25);
+  border-color: #6c8cff;
+}
+
+.skill-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+  transition: 0.3s ease;
+}
+
+.skill-card:hover .skill-icon {
+  transform: scale(1.2);
+}
+
+.skill-card p {
+  font-size: 1.1rem;
+  color: #222;
+  font-weight: 600;
+}
+
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* RESPONSIVE BREAKPOINTS */
+
+/* Tablets */
+@media (max-width: 1000px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Large Phones */
+@media (max-width: 700px) {
+  .skills-title {
+    font-size: 2.2rem;
+  }
+
+  .skill-card {
+    padding: 20px 8px;
+  }
+
+  .skill-icon {
+    font-size: 40px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 500px) {
+  .skills-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .skill-card {
+    padding: 20px;
+  }
+}

@@ -16,6 +16,8 @@ function Contact() {
             const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
             const res = await axios.post(`${API_URL}/api/contact`,form);
 
+            console.log("API URL:", process.env.REACT_APP_API_URL);
+
             if (res.data.success && res.data.message) {
                 setStatus({
                     type: res.data.emailError ? "warning" : "success",

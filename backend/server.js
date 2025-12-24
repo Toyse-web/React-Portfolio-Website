@@ -11,7 +11,10 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "https://react-portfolio-website-ub4x.onrender.com"
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   })

@@ -38,8 +38,6 @@ function Contact() {
         setTimeout(() => setStatus(null), 5000);
     };
 
-    console.log("API URL:", process.env.REACT_APP_API_URL);
-
     return (
         <section id="contact" className="contact-section">
             <h1 className="contact-title">Contact Me</h1>

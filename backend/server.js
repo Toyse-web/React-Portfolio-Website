@@ -9,12 +9,19 @@ const contactRoute = require("./routes/contact");
 const app = express();
 
 app.use(helmet());
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://react-portfolio-website-1zrc.onrender.com"
+]
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://react-portfolio-website-ub4x.onrender.com"
-    ],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed"));
+      }
+    },
     methods: ["GET", "POST"],
     credentials: true,
   })

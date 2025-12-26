@@ -14,7 +14,9 @@ function Contact() {
 
         try {
             const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
-            const res = await axios.post(`${API_URL}/api/contact`,form);
+            const res = await axios.post(`${API_URL}/api/contact`,form, {
+                timeout: 10000
+            });
 
             if (res.data.success && res.data.message) {
                 setStatus({

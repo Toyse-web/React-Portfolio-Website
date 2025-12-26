@@ -34,7 +34,7 @@ router.post("/",
                 to: ["olayonwatoyib05@gmail.com"],
                 subject: `New message from ${name}`,
                 html: `<h3>New Portfolio Message<h3>
-                        <p<strong>Name:</strong>${name}</p>
+                        <p<strong>Name:</strong> ${name}</p>
                         <p><strong>Email:</strong> ${email}</p>
                         <p>${message}</p>`,
             });

@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.df080676.css",
-    "main.js": "/static/js/main.b8920ba7.js",
+    "main.css": "/static/css/main.56c4b3f4.css",
+    "main.js": "/static/js/main.40fea66d.js",
     "static/media/profile.png": "/static/media/profile.6b33c25b90706118b4a3.png",
     "static/media/about-pic.jpg": "/static/media/about-pic.9a838d863e8d6a66a1ae.jpg",
     "static/media/perfumeShop.png": "/static/media/perfumeShop.8e86bef9211ea07fd52d.png",
     "static/media/ToyseLoan.png": "/static/media/ToyseLoan.3aa4c48c51e0bf646109.png",
     "index.html": "/index.html",
-    "main.df080676.css.map": "/static/css/main.df080676.css.map",
-    "main.b8920ba7.js.map": "/static/js/main.b8920ba7.js.map"
+    "main.56c4b3f4.css.map": "/static/css/main.56c4b3f4.css.map",
+    "main.40fea66d.js.map": "/static/js/main.40fea66d.js.map"
   },
   "entrypoints": [
-    "static/css/main.df080676.css",
-    "static/js/main.b8920ba7.js"
+    "static/css/main.56c4b3f4.css",
+    "static/js/main.40fea66d.js"
   ]
 }

@@ -2,15 +2,16 @@ import "./Projects.css";
 import ProjectCard from "./ProjectCard/ProjectCard.jsx";
 import ToyseLoan from "../../assets/ProjectsImg/ToyseLoan.png";
 import Ecormmerce from "../../assets/ProjectsImg/perfumeShop.png"
+import ToyseNews from "../../assets/ProjectsImg/newsPic.png";
 
 function Projects() {
     const projectList = [
         {
             title: "News App",
             desc: "A global news platform built with React, Node.js, PostgreSQL, and external APIs.",
-            image: "",
-            live: "https://your-demo-link.com",
-            code: "https://github.com/your-repo"
+            image: ToyseNews,
+            live: "Not yet ready for production",
+            code: "https://github.com/Toyse-web/ToyseNews.git"
         },
         {
             title: "Loan App",

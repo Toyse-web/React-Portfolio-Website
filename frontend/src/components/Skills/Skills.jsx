@@ -15,7 +15,7 @@ function Skills() {
     ];
 
     return (
-        <section id="skille" className="skills-section">
+        <section id="skills" className="skills-section">
             <h1 className="skills-title">Skills & Technologies</h1>
             <p className="skills-subtitle">
                 These are the tools technologies I use to build fast, modern and scalable applications.

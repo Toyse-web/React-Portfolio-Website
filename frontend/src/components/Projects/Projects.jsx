@@ -3,6 +3,7 @@ import ProjectCard from "./ProjectCard/ProjectCard.jsx";
 import ToyseLoan from "../../assets/ProjectsImg/ToyseLoan.png";
 import Ecormmerce from "../../assets/ProjectsImg/perfumeShop.png"
 import ToyseNews from "../../assets/ProjectsImg/newsPic.png";
+import EstinoBeauty from "../../assets/ProjectsImg/estino.png";
 
 function Projects() {
     const projectList = [

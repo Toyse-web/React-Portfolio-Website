@@ -26,6 +26,13 @@ function Projects() {
             image: Ecormmerce,
             live: "https://anuoluwa-perfume-and-care-8z7z.onrender.com",
             code: "https://github.com/Toyse-web/Anuoluwa-perfume-and-care.git"
+        },
+        {
+            title: "Estino Beauty",
+            desc: "A website using html + CSS + JavaScript.",
+            image: EstinoBeauty,
+            live: "https://toyse-dev.github.io/Estino-Beauty/",
+            code: "https://github.com/Toyse-dev/Estino-Beauty.git"
         }
     ];
 
